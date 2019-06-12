@@ -9,7 +9,16 @@ var gameObject = {
 
     updateDisplay: function() {
         //TODO: write function to update relevant parts of the page once I have HTML set up
-        
+        $('#wins-element').text('Wins: ' + this.wins);
+        $('#losses-element').text('Losses: ' + this.losses);
+        $('#wrong-guesses-element').text('Wrong guesses: ' + this.wrongGuesses);
+        $('#guesses-left-element').text('Guesses remaining: ' + this.remainingGuesses);
+
+        var tempWord = '';
+        for (var i = 0; i < this.guessedDisplay.length; i++) {
+            tempWord += this.guessedDisplay[i] + " ";
+        }
+        $('#word-element').text(tempWord);
     },
 
     newGame: function() {
@@ -43,12 +52,22 @@ var gameObject = {
         this.updateDisplay();
 
         if (!(this.guessedDisplay.includes('_'))) {
-            alert('Congrats, you won!');
+            var tempWord = '';
+            for (var i = 0; i < this.currentWord.length; i++) {
+                tempWord += this.currentWord[i];
+            }
+
+            alert('Congrats, you won! The word was ' + tempWord);
             this.wins++;
             this.newGame();
         }
         else if (this.remainingGuesses <= 0) {
-            alert('Oh no, you lost :(');
+            var tempWord = '';
+            for (var i = 0; i < this.currentWord.length; i++) {
+                tempWord += this.currentWord[i];
+            }
+
+            alert('Oh no, you lost :( The word was ' + tempWord);
             this.losses++;
             this.newGame();
         }
@@ -65,6 +84,8 @@ var gameObject = {
 }
 
 var validKeys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+gameObject.newGame();
 
 $(document).on('keyup', function(e) {
     if (validKeys.includes(e.key)) {
