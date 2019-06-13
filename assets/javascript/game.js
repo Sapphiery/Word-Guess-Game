@@ -1,5 +1,5 @@
 var gameObject = {
-    possibleWords: ['test', 'city', 'kira', 'coding'],
+    possibleWords: ['bulbasaur','ivysaur','venusaur','charmander','charmeleon','charizard','squirtle','wortortle','blastoise'],
     currentWord: [],
     wrongGuesses: [],
     guessedDisplay: [],
